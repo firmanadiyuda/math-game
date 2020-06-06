@@ -11,7 +11,7 @@ $koneksi = mysqli_connect($servername,$username,$password,$dbname) or die(mysqli
 
 //  Fungsi tambah data.
 function tambah($nama, $email, $skor){
-  $sql = "INSERT INTO math (id, nama, email, score) VALUES(NULL, '".$nama."','".$email."','".$skor."')";
+  $sql = "INSERT INTO ". $table ." (id, nama, email, score) VALUES(NULL, '".$nama."','".$email."','".$skor."')";
   if (mysqli_query($GLOBALS['koneksi'], $sql)) {
     } else {
       echo "Error: " . $sql . "<br>" . mysqli_error($GLOBALS['koneksi']);
@@ -21,7 +21,7 @@ function tambah($nama, $email, $skor){
 
 //  Fungsi baca data.
 function baca_data() {
-  $sql = "SELECT * FROM math ORDER BY score DESC LIMIT 10";
+  $sql = "SELECT * FROM ". $table ." ORDER BY score DESC LIMIT 10";
   $result = mysqli_query($GLOBALS['koneksi'], $sql);
 
   $i = 1;
