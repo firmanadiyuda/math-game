@@ -1,22 +1,42 @@
 <?php
-
+header('Location: index.php');
 $servername = "localhost";
 $username = "root";
-$password = "";
-$dbname = "db_game";
+$password = "tujubelas";
+$dbname = "game";
+$table = "math";
 
 // --- koneksi ke database
 $koneksi = mysqli_connect($servername,$username,$password,$dbname) or die(mysqli_error());
 
 // --- Fngsi tambah data (Create)
 function tambah($nama, $email, $skor){
-    $sql = "INSERT INTO tb_math (id, nama, email, skor) VALUES(NULL, '".$nama."','".$email."','".$skor."')";
-    if (mysqli_query($GLOBALS['koneksi'], $sql)) {
-      } else {
-        echo "Error: " . $sql . "<br>" . mysqli_error($GLOBALS['koneksi']);
-      }
-    mysqli_close($GLOBALS['koneksi']);
+  $sql = "INSERT INTO math (id, nama, email, score) VALUES(NULL, '".$nama."','".$email."','".$skor."')";
+  if (mysqli_query($GLOBALS['koneksi'], $sql)) {
+    } else {
+      echo "Error: " . $sql . "<br>" . mysqli_error($GLOBALS['koneksi']);
+    }
+  mysqli_close($GLOBALS['koneksi']);
 }
 
+function baca_data() {
+  $sql = "SELECT * FROM math ORDER BY score DESC LIMIT 10";
+  $result = mysqli_query($GLOBALS['koneksi'], $sql);
+
+  $i = 1;
+
+  while($row = mysqli_fetch_array($result)) {
+  
+    echo "<tr>";
+    echo "<td>" . $i . "</td>";
+    echo "<td>" . $row["nama"] . "</td>";
+    echo "<td>" . $row["score"] . "</td>";
+    echo "</tr>";
+    $i = $i + 1;
+    
+  }
+
+  mysqli_close($GLOBALS['koneksi']);
+}
 
 ?> 
