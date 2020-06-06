@@ -2,50 +2,51 @@
 	session_start();
 	$_SESSION["score"] = 0;
 	$_SESSION["lives"] = 5;
+
+	include "layout/head.php";
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Math Game</title>
-</head>
+	<div class="container" style="max-width: 400px; margin:auto; margin-top: 100px;">
+		<div class="card">
+			<div class="card-body">
+				<h4 class="card-title" style="text-align: center;">Math Game</h4>
 
-<body>
-<h1>Math Game</h1>
+				<?php
+					if (isset($_SESSION["email"])) {
+				?>
+
+				<div style="text-align: center;">
+					<p>Hallo <b><?php echo $_SESSION["nama"]; ?></b> , Selamat datang kembali di permainan ini! </p>
+					<a href="game.php" class="btn btn-primary" style="text-align: center;">Start Game</a> <br> <br> <br>
+					Bukan Anda? <a href="reset.php">klik di sini</a> 
+				</div>
+				<?php
+					} else {
+				?>
+
+				<form action="game.php" method="post">
+					<div class="form-group" style="margin-right: 33px; ">
+						Nama <br>
+						<input style="width: 100%;" type="text" class="form-control" name="nama" id="nama" placeholder="Firman Adiyuda" required>
+					</div>
+
+					<div class="form-group" style="margin-right: 33px; ">
+						Email <br>
+						<input style="width: 100%;" type="email" class="form-control" name="email" id="email" placeholder="firman@adiyuda.com" required>
+					</div>
+
+					<div class="form-group" style="text-align: right;">
+						<button type="submit" class="btn btn-primary">Submit</button>
+					</div>
+				</form>
+
+				<?php
+					}
+				?>
+			</div>
+		</div>
+	</div>
 
 <?php
-	if (isset($_SESSION["email"])) {
+	include "layout/foot.php";
 ?>
-
-Hallo <?php echo $_SESSION["nama"]; ?> , selamat datang kembali di permainan ini!!! <br><br>
-<a href="game.php">[Start Game]</a> <br> <br>
-Bukan Anda? <a href="reset.php">(klik di sini)</a> 
-
-<?php
-
-	} else {
-
-?>
-
-<form action="game.php" method="post">
-		Nama
-		<input type="text" name="nama" id="nama">
-		<br>
-		
-		Email
-		<input type="email" name="email" id="email">
-		<br> <br>
-
-		<input type="submit" value="Mulai Main">
-	</form>
-
-<?php
-
-	}
-?>
-
-
-</body>
-</html>
