@@ -1,11 +1,7 @@
-<?php    
+<?php
 	session_start();
 	include "koneksi.php";
 	include "layout/head.php";
-
-    // if (!isset($_SESSION["email"])) {
-		// 	header('Location: index.php');
-		// }
 ?>
 
 <div class="container" style="max-width: 400px; margin:auto; margin-top: 100px;">
