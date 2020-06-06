@@ -1,18 +1,23 @@
 <?php    
-    session_start();
+	session_start();
+	include "layout/head.php";
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>    
-    Hello <?php echo $_SESSION["nama"]; ?>, sayang jawaban Anda salah… tetap semangat ya !!!
-    Lives: <?php echo $_SESSION["lives"]; ?> | Score: <?php echo $_SESSION["score"]; ?>
+<div class="container" style="max-width: 400px; margin:auto; margin-top: 100px;">
+	<div class="card">
+		<div class="card-body">
+			<h4 class="card-title text-danger" style="text-align: center;">Math Game</h4>
+			<hr>
+			<p>Hello <b><?php echo $_SESSION["nama"]; ?></b>, sayang jawaban Anda salah… tetap semangat ya !!!</p>
+			<div style="text-align: center;"> Lives: <b> <?php echo $_SESSION["lives"]; ?> </b> | Score: <b> <?php echo $_SESSION["score"]; ?> </b> </div> <br>
 
-    <a href="game.php">[Soal selanjutnya]</a>
-</body>
-</html>
+			<div class="form-group" style="text-align: center;">
+				<a href="game.php" style="width: 100%;" class="btn btn-primary">Soal Selanjutnya</a>
+			</div>
+			</div>
+	</div>
+</div>
+
+<?php
+	include "layout/foot.php";
+?>
