@@ -1,7 +1,10 @@
 <?php
 	session_start();
-	$_SESSION["score"] = 0;
-	$_SESSION["lives"] = 5;
+
+	if (!isset($_SESSION["email"])) {
+		$_SESSION["score"] = 0;
+		$_SESSION["lives"] = 5;
+	}
 
 	include "layout/head.php";
 ?>
