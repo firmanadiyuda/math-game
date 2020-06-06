@@ -2,15 +2,23 @@
 	session_start();
 	include "koneksi.php";
 
-	//	Jika pernah memasukkan nama dan email.
-	if (isset($_SESSION["email"])) {
-		
 	//	Jika belum pernah memasukkan nama dan email.
-	} else {
+	if (!isset($_SESSION["email"])) {
+			
+		//	Jika form sebelumya belum terisi.
+		if (!isset($_POST["nama"])) {
+				
+			//	Redirect ke index.
+			header('Location: index.php');
+			
+			//	Jika form sebelumnya sudah terisi.
+		} else {
+			
+			//	Mengambil data dari POST dan memasukkan ke dalam session.
+			$_SESSION["nama"] = $_POST["nama"];
+			$_SESSION["email"] = $_POST["email"];
 
-		//	Mengambil data dari POST dan memasukkan ke dalam session.
-		$_SESSION["nama"] = $_POST["nama"];
-		$_SESSION["email"] = $_POST["email"];
+		}
 	}
 
 	//	Jika nyawa habis.
@@ -19,8 +27,9 @@
 		//	Simpan data pemain dan skor ke database
 		tambah($_SESSION["nama"], $_SESSION["email"], $_SESSION["score"]);
 
-		//	Pergi ke gameover.php
-		header('Location: gameover.php');
+		//	Pergi ke halloffame.php
+		header('Location: halloffame.php');
+		
 	}
 
 	//	Random bilanganSatu dan bilanganDua.
