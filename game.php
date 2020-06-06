@@ -1,5 +1,6 @@
 <?php
 	session_start();
+	include "koneksi.php";
 
 	//	Jika pernah memasukkan nama dan email.
 	if (isset($_SESSION["email"])) {
@@ -14,7 +15,10 @@
 
 	//	Jika nyawa habis.
 	if ($_SESSION["lives"] == 0) {
-		
+
+		//	Simpan data pemain dan skor ke database
+		tambah($_SESSION["nama"], $_SESSION["email"], $_SESSION["score"]);
+
 		//	Pergi ke gameover.php
 		header('Location: gameover.php');
 	}
@@ -36,7 +40,7 @@
 <div class="container" style="max-width: 400px; margin:auto; margin-top: 100px;">
 	<div class="card">
 		<div class="card-body">
-			<h4 class="card-title" style="text-align: center;">Math Game</h4>
+			<h4 class="card-title text-primary" style="text-align: center;">Math Game</h4>
 			<hr>
 			<form action="cekjawaban.php" method="post">	
 				<p>Hello <b><?php echo $_SESSION["nama"]; ?></b>, tetap semangat ya… you can do the best!!</p>
